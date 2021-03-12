@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">UCF GO</string>
+    <string name="LogoImage">UCF GO Logo</string>
+    <string name="SignInButton">Login</string>
+    <string name="UsernameTitle">Username</string>
+    <string name="PasswordTitle">Password</string>
+    <string name="UsernameField">Email</string>
+    <string name="PasswordField">Password</string>
+    <string name="Signup">Sign Up</string>
+    <string name="WelcomeText">Welcome Test</string>
+    <string name="SettingsButton">Settings</string>
+    <string name="QRCodeText">Show Available Spots</string>
+    <string name="FindCarText">Find My Car</string>
+    <string name="HomePage">Home</string>
+    <string name="SettingsPage">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+
+</resources>

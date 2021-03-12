@@ -6,13 +6,15 @@
     <string name="PasswordTitle">Password</string>
     <string name="UsernameField">Email</string>
     <string name="PasswordField">Password</string>
-    <string name="Signup">Sign Up</string>
+    <string name="Signup">Create Account</string>
     <string name="WelcomeText">Welcome Test</string>
     <string name="SettingsButton">Settings</string>
     <string name="QRCodeText">Show Available Spots</string>
     <string name="FindCarText">Find My Car</string>
     <string name="HomePage">Home</string>
     <string name="SettingsPage">Settings</string>
+    <string name="signUpTitle">Sign up</string>
+    <string name="nameTitle">Full Name</string>
     <!-- Strings used for fragments for navigation -->
 
 </resources>

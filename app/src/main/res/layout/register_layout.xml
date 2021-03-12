@@ -3,27 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/cardview_dark_background">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="333dp"
-        android:layout_height="251dp"
-        android:contentDescription="@string/LogoImage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/conceptimage" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="283dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="379dp"
+        android:layout_height="437dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="8dp"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView">
+
 
         <TextView
             android:id="@+id/UsernameTitle"
@@ -38,16 +33,16 @@
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/email"
-            android:hint = "Email"
-            android:layout_marginLeft="16dp"
-            android:inputType="textEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:met_textColorHint="@color/myTextColor"
+            android:layout_marginLeft="16dp"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
             app:met_baseColor="@color/myTextColor"
-            app:met_primaryColor="@color/myTextColor"
             app:met_iconPadding="0dp"
-            app:met_iconRight="@drawable/ic_email"/>
+            app:met_iconRight="@drawable/ic_email"
+            app:met_primaryColor="@color/myTextColor"
+            app:met_textColorHint="@color/myTextColor" />
 
 
         <TextView
@@ -74,30 +69,30 @@
             app:met_primaryColor="@color/myTextColor"
             app:met_textColorHint="@color/myTextColor" />
 
+        <TextView
+            android:id="@+id/nameTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/nameTitle"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:hint="Name"
+            android:inputType="text"
+            app:met_baseColor="@color/myTextColor"
+            app:met_iconPadding="0dp"
+            app:met_iconRight="@drawable/ic_email"
+            app:met_primaryColor="@color/myTextColor"
+            app:met_textColorHint="@color/myTextColor" />
+
     </LinearLayout>
-
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/SignInButton"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/SignupButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
-    <Button
-        android:id="@+id/SignupButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="@string/Signup"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

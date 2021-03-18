@@ -26,5 +26,17 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-task stage(dependsOn: ['build', 'clean'])
-build.mustRunAfter clean
+task wrapper(type: Wrapper) {
+    gradleVersion = gradleWrapperVersion
+}
+
+task stage() {
+    dependsOn clean, war
+}
+
+task copyToLib(type: Copy) {
+    into "$buildDir/libs"
+    from(configurations.compile)
+}
+
+stage.dependsOn(copyToLib)

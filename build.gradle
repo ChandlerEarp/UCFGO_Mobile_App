@@ -26,10 +26,6 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = gradleWrapperVersion
-}
-
 task stage() {
     dependsOn clean, war
 }

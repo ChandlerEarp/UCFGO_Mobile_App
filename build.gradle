@@ -26,8 +26,9 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-task stage(dependsOn: ['build', 'clean'])
-build.mustRunAfter clean
+task stage {
+    dependsOn installDist
+}
 
 task copyToLib(type: Copy) {
     into "$buildDir/libs"

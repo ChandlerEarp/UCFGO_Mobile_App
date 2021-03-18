@@ -28,7 +28,7 @@ task clean(type: Delete) {
 task stage(dependsOn: ['build', 'clean'])
 
 task copyToLib(type: Copy) {
-    into "$buildDir/libs"
+    into "buildDir/libs"
     from(configurations.compile)
 }
 build.mustRunAfter clean

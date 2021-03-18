@@ -25,7 +25,7 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-task stage(dependsOn: ['build', 'clean'])
+task stage(dependsOn: clean)
 /*
 task copyToLib(type: Copy) {
     into "buildDir/libs"
@@ -33,4 +33,3 @@ task copyToLib(type: Copy) {
 }
 stage.dependsOn(copyToLib)
  */
-build.mustRunAfter clean

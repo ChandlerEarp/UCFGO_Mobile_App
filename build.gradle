@@ -27,7 +27,7 @@ task clean(type: Delete) {
 }
 
 task stage {
-    dependsOn installDist
+    dependsOn clean
 }
 
 task copyToLib(type: Copy) {

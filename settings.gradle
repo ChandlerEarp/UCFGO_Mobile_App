@@ -1,2 +1,3 @@
 include ':app'
-rootProject.name = "UCFGO_Mobile_App"
+rootProject.name = "UCFGO_Mob" +
+        "ile_App"

@@ -3,6 +3,7 @@ package com.example.ucfgo_mobile_app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Call;
 import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     MaterialEditText edit_login_email, edit_login_password;
     Button button_login;
 
+
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     IMyService iMyService;
 
@@ -38,6 +41,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop(){
         compositeDisposable.clear();
         super.onStop();
+    }
+
+    public void launchHome(){
+        //Open the Settings Page
+        Intent i = new Intent(this, Home.class);
+        startActivity(i);
     }
 
     @Override
@@ -124,12 +133,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-//    public void launchHome(View v){
-//        //Open the Home Page
-//        Intent i = new Intent(this, Home.class);
-//        startActivity(i);
-//    }
-
     private void loginUser(String email, String password) {
         if(TextUtils.isEmpty(email)){
             Toast.makeText(this,"Email cannot be null or empty", Toast.LENGTH_SHORT).show();
@@ -140,7 +143,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this,"Password cannot be null or empty", Toast.LENGTH_SHORT).show();
             return;
         }
-
         compositeDisposable.add(iMyService.loginUser(email,password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -148,8 +150,13 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void accept(String response) throws Exception {
                         Toast.makeText(MainActivity.this, ""+response, Toast.LENGTH_SHORT).show();
-
+                        launchHome();
                     }
                 }));
+//                .subscribe({response -> onResponse(response)}, {t -> onFailure(t) }))
+//         private void onResponse(){
+//
+//        }
+
     }
 }

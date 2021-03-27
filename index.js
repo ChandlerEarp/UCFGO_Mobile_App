@@ -3,7 +3,6 @@ var ObjectID = mongodb.ObjectID;
 var crypto = require('crypto');
 var express = require('express');
 var bodyParser = require('body-parser');
-const e = require('express');
 
 var genRandomString = function(length){
     return crypto.randomBytes(Math.ceil(length/2))
@@ -13,7 +12,7 @@ var genRandomString = function(length){
 
 var sha512 = function(password,salt){
     var hash = crypto.createHmac('sha512',salt);
-    hash.update(password).toString();
+    hash.update(password.toString());
     var value = hash.digest('hex');
     return{
         salt:salt,
@@ -41,7 +40,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 var MongoClient = mongodb.MongoClient;
 
 //Connection URL
-var url = 'mongodb://127.0.0.1:27017';
+//var url = 'mongodb://127.0.0.1:27017';
 var uri = "mongodb+srv://dbUser:userPassword@cluster0.wxlns.mongodb.net/ucf_go?retryWrites=true&w=majority";
 
 MongoClient.connect(uri, {useNewUrlParser: true,  useUnifiedTopology: true },function(err,client){
@@ -92,7 +91,6 @@ MongoClient.connect(uri, {useNewUrlParser: true,  useUnifiedTopology: true },fun
 
             var email = post_data.email;
             var userPassword = post_data.password;
-
             
             var db = client.db('ucf_go');
 

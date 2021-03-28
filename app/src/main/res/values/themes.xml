@@ -14,4 +14,13 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="Theme.UCFGO_Mobile_App.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.UCFGO_Mobile_App.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.UCFGO_Mobile_App.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>

@@ -3,6 +3,7 @@ var ObjectID = mongodb.ObjectID;
 var crypto = require('crypto');
 var express = require('express');
 var bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 var genRandomString = function(length){
     return crypto.randomBytes(Math.ceil(length/2))
@@ -29,6 +30,13 @@ function saltHashPassword(userPassword){
 function checkHashPassword(userPassword,salt){
     var passwordData = sha512(userPassword,salt);
     return passwordData;
+}
+
+function saveCookie(){
+    var minutes=20;
+    var date = new Date();
+    date.setTime(date.getTime()+(minutes*60*1000));
+    document
 }
 
 //Create Express Service
@@ -84,6 +92,7 @@ MongoClient.connect(uri, {useNewUrlParser: true,  useUnifiedTopology: true },fun
                             })
                     }
                 })
+               saveCookie();
         });
 
         app.post('/login', (request,response,next) =>{
@@ -121,6 +130,49 @@ MongoClient.connect(uri, {useNewUrlParser: true,  useUnifiedTopology: true },fun
                 })
         });
 
+        app.post('/garage', (request,response,next)=>{
+            var db = client.db('ucf_go');
+
+            var query = { garage: "A"}
+            db.collection("car_locations").find(query).toArray(function(err, result){
+                if(err) throw err;
+                console.log(result);
+                db.close();
+            });
+        });
+
+        app.post('/grabName', (request,response,next)=>{
+            var post_data = request.body;
+            var email = post_data.email;
+
+            var db = client.db('ucf_go');db.collection('users')
+                                                         .find({'email':email}).count(function(err,number){
+                                                             if(number == 0){
+                                                                 response.json('Email does not exist');
+                                                                 console.log('Email does not exist');
+                                                                 return null;
+                                                             }
+                                                             else{
+                                                                 //Insert Data
+                                                                 db.collection('users')
+                                                                     .findOne({'email':email},function(err,user){
+                                                                         var name = user.name;
+                                                                         if(name == null){
+                                                                             response.json('Error in retrieving name');
+                                                                             console.log('Error in retrieving name');
+                                                                             return null;
+                                                                         }
+                                                                         else{
+                                                                             response.json(name);
+                                                                             console.log(name);
+                                                                             return name;
+                                                                         }
+                                                                     })
+                                                             }
+                                                         })
+                                                 });
+
+        //const PORT = proces.env.PORT || 8080;
         app.listen(3000, ()=>{
             console.log('Connected to MongoDB Server, Running on port 3000');
         })

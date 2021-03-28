@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     TextView text_create_account;
     MaterialEditText edit_login_email, edit_login_password;
     Button button_login;
+    String email, name;
+
 
 
     CompositeDisposable compositeDisposable = new CompositeDisposable();
@@ -46,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
     public void launchHome(){
         //Open the Settings Page
         Intent i = new Intent(this, Home.class);
+        i.putExtra("email", email);
+        i.putExtra("name", name);
         startActivity(i);
     }
 
@@ -68,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 loginUser(edit_login_email.getText().toString(),
                         edit_login_password.getText().toString());
+                email = (edit_login_email.getText().toString());
+                grabUserInfo(email);
             }
         });
         text_create_account = (TextView) findViewById(R.id.SignupButton);
@@ -153,10 +159,33 @@ public class MainActivity extends AppCompatActivity {
                         launchHome();
                     }
                 }));
-//                .subscribe({response -> onResponse(response)}, {t -> onFailure(t) }))
-//         private void onResponse(){
-//
-//        }
 
     }
+    public void grabUserInfo(String email){
+        String name = null;
+        System.out.println("Email: " + email);
+        compositeDisposable.add(iMyService.grabName(email)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String response) throws Exception {
+                        System.out.println("Success " + response);
+                        setName(response);
+                    }
+                }));
+
+    }
+    public void setName(String response){
+        name = response;
+        System.out.println(getName());
+    }
+    public String getName(){
+        return name;
+    }
+//    public String getName()
+//    {
+//        String arr[] = name.split("", 2);
+//        return arr[0];
+//    }
 }

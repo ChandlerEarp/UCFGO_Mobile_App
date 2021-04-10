@@ -178,8 +178,12 @@ MongoClient.connect(uri, {useNewUrlParser: true,  useUnifiedTopology: true },fun
                                                  });
 
         //const PORT = proces.env.PORT || 8080;
-        app.listen(3000, ()=>{
-            console.log('Connected to MongoDB Server, Running on port 3000');
+        let port = process.env.PORT;
+        if(port == null || port == ""){
+            port = 8000;
+        }
+        app.listen(port, ()=>{
+            console.log('Connected to MongoDB Server, Running on port ' +  port);
         })
     }
 });

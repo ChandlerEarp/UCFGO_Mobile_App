@@ -20,12 +20,12 @@ allprojects {
         }
     }
 }
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
-
-task stage(dependsOn: clean)
+//
+//task clean(type: Delete) {
+//    delete rootProject.buildDir
+//}
+//
+//task stage(dependsOn: clean)
 /*
 task copyToLib(type: Copy) {
     into "buildDir/libs"

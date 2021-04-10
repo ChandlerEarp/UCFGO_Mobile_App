@@ -33,31 +33,37 @@ public class Home extends AppCompatActivity {
         Retrofit retrofitClient = RetrofitClient.getInstance();
         iMyService = retrofitClient.create(IMyService.class);
 
-        String email= null,name=null;
+        String email= null,name=null,result = null;
         Button button = findViewById(R.id.SettingsButton);
-        ImageView car = findViewById(R.id.CarImage);
+        ImageView qrImage = findViewById(R.id.QRCodeImage);
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             email = extras.getString("email");
             name = extras.getString("name");
-            String result = name.replaceAll("^[\"']+|[\"']+$", "");
+            if(name!= null)
+                result = name.replaceAll("^[\"']+|[\"']+$", "");
             TextView welcome;
             welcome = findViewById(R.id.WelcomeText);
             System.out.println("Test:" + result);
             welcome.setText("Welcome "+ result);
         }
 
-        car.setOnClickListener(new View.OnClickListener(){
+        qrImage.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
-
+                launchGarage(v);
             }
         } );
     }
     public void launchSettings(View v){
         //Open the Settings Page
         Intent i = new Intent(this, SettingsActivity.class);
+        startActivity(i);
+    }
+    public void launchGarage(View v){
+        Intent i = new Intent(this, AvailableSpots.class);
         startActivity(i);
     }
 

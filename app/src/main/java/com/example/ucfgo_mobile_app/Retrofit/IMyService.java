@@ -20,12 +20,12 @@ public interface IMyService {
     Observable<String> loginUser(@Field("email") String email,
                                     @Field("password") String password);
 
-    @GET("garage")
+    @POST("garage")
     @FormUrlEncoded
-    Observable<String> garageOccupancy();
+    Observable<String> garageOccupancy(@Field("garageLetter") String garage);
 
     @POST("grabName")
     @FormUrlEncoded
-    Single<String> grabName(@Field("email") String name);
+    Observable<String> grabName(@Field("email") String name);
 
 }

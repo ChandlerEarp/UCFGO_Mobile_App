@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AvailableSpots"
+    android:background="@color/cardview_dark_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="168dp"
+        tools:layout_editor_absoluteY="16dp">
+
+        <Button
+            android:id="@+id/buttonGA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="launchGarageA"
+            android:text="@string/buttonGA" />
+
+        <Button
+            android:id="@+id/buttonGB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonGB" />
+
+        <Button
+            android:id="@+id/buttonGC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonGC" />
+
+        <Button
+            android:id="@+id/buttonGD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonGD" />
+
+        <Button
+            android:id="@+id/buttonGE"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonGE" />
+
+        <Button
+            android:id="@+id/buttonGF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonGF" />
+
+        <Button
+            android:id="@+id/buttonGG"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonGG" />
+
+        <Button
+            android:id="@+id/buttonGH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonGH" />
+
+        <Button
+            android:id="@+id/buttonGI"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonGI" />
+
+        <Button
+            android:id="@+id/buttonGL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonGL" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

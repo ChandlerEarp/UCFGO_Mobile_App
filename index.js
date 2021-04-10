@@ -5,6 +5,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
+require('dotenv').config();
+
 var genRandomString = function(length){
     return crypto.randomBytes(Math.ceil(length/2))
         .toString('hex')
@@ -32,12 +34,6 @@ function checkHashPassword(userPassword,salt){
     return passwordData;
 }
 
-function saveCookie(){
-    var minutes=20;
-    var date = new Date();
-    date.setTime(date.getTime()+(minutes*60*1000));
-    document
-}
 
 //Create Express Service
 var app = express();
@@ -92,7 +88,6 @@ MongoClient.connect(uri, {useNewUrlParser: true,  useUnifiedTopology: true },fun
                             })
                     }
                 })
-               saveCookie();
         });
 
         app.post('/login', (request,response,next) =>{
@@ -131,13 +126,23 @@ MongoClient.connect(uri, {useNewUrlParser: true,  useUnifiedTopology: true },fun
         });
 
         app.post('/garage', (request,response,next)=>{
-            var db = client.db('ucf_go');
+             var post_data = request.body;
 
-            var query = { garage: "A"}
+             var garageName = post_data.garageLetter;
+             var db = client.db('ucf_go');
+
+             if(garageName == null){
+                response.json('Error grabbing garage name');
+                console.log('Error grabbing garage name');
+                return;
+             }
+
+
+            var query = { garage: garageName}
             db.collection("car_locations").find(query).toArray(function(err, result){
                 if(err) throw err;
+                response.json(result);
                 console.log(result);
-                db.close();
             });
         });
 

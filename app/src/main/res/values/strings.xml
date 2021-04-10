@@ -24,6 +24,16 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="buttonGA">Garage A</string>
+    <string name="buttonGB">Garage B</string>
+    <string name="buttonGC">Garage C</string>
+    <string name="buttonGD">Garage D</string>
+    <string name="buttonGE">Garage E</string>
+    <string name="buttonGF">Garage F</string>
+    <string name="buttonGG">Garage G</string>
+    <string name="buttonGH">Garage H</string>
+    <string name="buttonGI">Garage I</string>
+    <string name="buttonGL">Libra Garage</string>
     <!-- Strings used for fragments for navigation -->
 
 </resources>

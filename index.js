@@ -51,6 +51,9 @@ MongoClient.connect(uri, {useNewUrlParser: true,  useUnifiedTopology: true },fun
     if(err)
         console.log('Unable to connect to the mongoDB server,Error',err);
     else{
+        app.get('/', function (req, res) {
+            res.status(200).json({message:"Testing ucfgo application"});
+        });
 
         app.post('/register', (request,response,next) =>{
             var post_data = request.body;

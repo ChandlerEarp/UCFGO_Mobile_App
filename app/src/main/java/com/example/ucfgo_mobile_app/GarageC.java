@@ -16,24 +16,24 @@ import retrofit2.Retrofit;
 
 import static java.lang.Thread.sleep;
 
-public class GarageA extends AppCompatActivity {
+public class GarageC extends AppCompatActivity {
 
     IMyService iMyService;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     float occupancy = 0;
     float totalOccupancy = 0;
-    ProgressBar barA;
-    TextView percentA;
+    ProgressBar barC;
+    TextView percentC;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_garage_a);
-        setTitle("Garage A");
+        setContentView(R.layout.activity_garage_c);
+        setTitle("Garage C");
 
         Retrofit retrofitClient = RetrofitClient.getInstance();
         iMyService = retrofitClient.create(IMyService.class);
-        String garageLetter = "A";
+        String garageLetter = "C";
         compositeDisposable.add(iMyService.garageOccupancy(garageLetter)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -52,11 +52,11 @@ public class GarageA extends AppCompatActivity {
                     @Override
                     public void accept(String s) throws Exception {
                         occupancy = calculatePercentage(s)*100;
-                        barA = findViewById(R.id.progressBarA);
-                        barA.setProgress((int)occupancy);
-                        percentA = findViewById(R.id.percentageA);
-                        if(barA !=null)
-                            percentA.setText("" + barA.getProgress() + "%");
+                        barC = findViewById(R.id.progressBarC);
+                        barC.setProgress((int)occupancy);
+                        percentC = findViewById(R.id.percentageC);
+                        if(barC !=null)
+                            percentC.setText("" + barC.getProgress() + "%");
                     }
                 }));
 

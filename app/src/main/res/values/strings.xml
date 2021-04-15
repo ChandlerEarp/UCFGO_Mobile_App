@@ -7,7 +7,7 @@
     <string name="UsernameField">Email</string>
     <string name="PasswordField">Password</string>
     <string name="Signup">Create Account</string>
-    <string name="WelcomeText">Welcome Chandler</string>
+    <string name="WelcomeText">Welcome</string>
     <string name="SettingsButton">Settings</string>
     <string name="QRCodeText">Show Available Spots</string>
     <string name="FindCarText">Find My Car</string>

@@ -22,7 +22,8 @@ public class Home extends AppCompatActivity {
 
     IMyService iMyService;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
-    String name;
+    String userID;
+    String email;
 
 
     @Override
@@ -33,7 +34,7 @@ public class Home extends AppCompatActivity {
         Retrofit retrofitClient = RetrofitClient.getInstance();
         iMyService = retrofitClient.create(IMyService.class);
 
-        String email= null,name=null,result = null;
+        String name=null,result = null;
         Button button = findViewById(R.id.SettingsButton);
         ImageView qrImage = findViewById(R.id.QRCodeImage);
 
@@ -56,13 +57,31 @@ public class Home extends AppCompatActivity {
                 launchGarage(v);
             }
         } );
+
+        compositeDisposable.add(iMyService.grabID(email)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+                        System.out.println(s);
+                        userID = s;
+                    }
+                })
+        );
     }
+
     public void launchSettings(View v){
         //Open the Settings Page
         Intent i = new Intent(this, SettingsActivity.class);
         startActivity(i);
     }
     public void launchGarage(View v){
+        Intent i = new Intent(this, AvailableSpots.class);
+        startActivity(i);
+    }
+
+    public void launchCarFinder(View v){
         Intent i = new Intent(this, AvailableSpots.class);
         startActivity(i);
     }

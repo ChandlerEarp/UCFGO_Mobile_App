@@ -1,9 +1,10 @@
 package com.example.ucfgo_mobile_app;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ucfgo_mobile_app.Retrofit.IMyService;
 import com.example.ucfgo_mobile_app.Retrofit.RetrofitClient;
@@ -14,26 +15,23 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
-import static java.lang.Thread.sleep;
-
-public class GarageA extends AppCompatActivity {
-
+public class GarageB extends AppCompatActivity {
     IMyService iMyService;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     float occupancy = 0;
     float totalOccupancy = 0;
-    ProgressBar barA;
-    TextView percentA;
+    ProgressBar barB;
+    TextView percentB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_garage_a);
-        setTitle("Garage A");
+        setContentView(R.layout.activity_garage_b);
+        setTitle("Garage B");
 
         Retrofit retrofitClient = RetrofitClient.getInstance();
         iMyService = retrofitClient.create(IMyService.class);
-        String garageLetter = "A";
+        String garageLetter = "B";
         compositeDisposable.add(iMyService.garageOccupancy(garageLetter)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -51,12 +49,12 @@ public class GarageA extends AppCompatActivity {
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        occupancy = calculatePercentage(s)*100;
-                        barA = findViewById(R.id.progressBarA);
-                        barA.setProgress((int)occupancy);
-                        percentA = findViewById(R.id.percentageA);
-                        if(barA !=null)
-                            percentA.setText("" + barA.getProgress() + "%");
+                        occupancy = (calculatePercentage(s)/totalOccupancy)*100;
+                        barB = findViewById(R.id.progressBarB);
+                        barB.setProgress((int)occupancy);
+                        percentB = findViewById(R.id.percentageB);
+                        if(barB !=null)
+                            percentB.setText("" + barB.getProgress() + "%");
                     }
                 }));
 

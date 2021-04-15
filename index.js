@@ -146,6 +146,58 @@ MongoClient.connect(uri, {useNewUrlParser: true,  useUnifiedTopology: true },fun
             });
         });
 
+        app.post('/garageResults', (request,response,next)=>{
+             var post_data = request.body;
+
+             var garageName = post_data.garageLetter;
+             var db = client.db('ucf_go');
+
+             if(garageName == null){
+                response.json('Error grabbing garage name');
+                console.log('Error grabbing garage name');
+                return;
+             }
+
+
+            var query = { occupied: true, garage : garageName}
+            db.collection("car_locations").find(query).toArray(function(err, result){
+                if(err) throw err;
+                response.json(result);
+                console.log(result);
+            });
+        });
+
+        app.post('/grabID', (request,response,next) =>{
+            var post_data = request.body;
+
+            var email = post_data.email;
+
+            var db = client.db('ucf_go');
+            db.collection('users').find({'email':email}).count(function(err,number){
+                if(number == 0){
+                    response.json('Email does not exist');
+                    console.log('Email does not exist');
+                    return null;
+                }
+                else{
+                    db.collection('users').findOne({'email':email},function(err,user){
+                        var userID = user._id;
+                        if(userID == null){
+                            response.json('Error in retrieving userID');
+                            console.log('Error in retrieving userID');
+                            return null;
+                        }
+                        else{
+                            response.json(userID);
+                            console.log(userID);
+                            return userID;
+                        }
+
+                    })
+                }
+            })
+        });
+
         app.post('/grabName', (request,response,next)=>{
             var post_data = request.body;
             var email = post_data.email;
@@ -175,7 +227,7 @@ MongoClient.connect(uri, {useNewUrlParser: true,  useUnifiedTopology: true },fun
                                                                      })
                                                              }
                                                          })
-                                                 });
+            });
 
         //const PORT = proces.env.PORT || 8080;
         let port = process.env.PORT;

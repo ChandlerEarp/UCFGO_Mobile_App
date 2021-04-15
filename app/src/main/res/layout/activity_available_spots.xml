@@ -25,18 +25,21 @@
             android:id="@+id/buttonGB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="launchGarageB"
             android:text="@string/buttonGB" />
 
         <Button
             android:id="@+id/buttonGC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="launchGarageC"
             android:text="@string/buttonGC" />
 
         <Button
             android:id="@+id/buttonGD"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="launchGarageD"
             android:text="@string/buttonGD" />
 
         <Button

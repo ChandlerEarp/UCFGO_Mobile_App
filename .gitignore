@@ -12,7 +12,7 @@
 /captures
 .externalNativeBuild
 .cxx
-app/local.properties
+local.properties
 **/node_modules
 npm-debug.log
 /*.env

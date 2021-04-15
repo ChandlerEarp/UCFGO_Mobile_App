@@ -1,5 +1,9 @@
 package com.example.ucfgo_mobile_app.Retrofit;
 
+import com.example.ucfgo_mobile_app.Post;
+
+import java.util.List;
+
 import io.reactivex.Single;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -28,4 +32,11 @@ public interface IMyService {
     @FormUrlEncoded
     Observable<String> grabName(@Field("email") String name);
 
+    @POST("grabID")
+    @FormUrlEncoded
+    Observable<String> grabID(@Field("email") String name);
+
+    @POST("garageResults")
+    @FormUrlEncoded
+    Observable<String> garageTrue(@Field("garageLetter") String garage);
 }

@@ -10,8 +10,9 @@ public class RetrofitClient {
     public static Retrofit getInstance(){
         if(instance ==null)
                 instance = new Retrofit.Builder()
-//                        .baseUrl("http://10.0.2.2:5000/")
-                        .baseUrl("https://ucfgo.herokuapp.com/")
+                        .baseUrl("http://10.0.2.2:5000/")
+//                        .baseUrl("https://ucfgo.herokuapp.com/")
+//                        .baseUrl("http://192.168.1.52:5000/")
                         .addConverterFactory(ScalarsConverterFactory.create())
                         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                         .build();

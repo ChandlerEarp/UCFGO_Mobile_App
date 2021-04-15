@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     MaterialEditText edit_login_email, edit_login_password;
     Button button_login;
     String email, name;
-
+    private Handler handler;
 
 
     CompositeDisposable compositeDisposable = new CompositeDisposable();
@@ -45,16 +46,24 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
     }
 
-    public void launchHome(){
-        //Open the Settings Page
-        Intent i = new Intent(this, Home.class);
-        i.putExtra("email", email);
-        i.putExtra("name", name);
-        startActivity(i);
+    private Runnable task = new Runnable() {
+        @Override
+        public void run() {
+              Intent i = new Intent(MainActivity.this,Home.class);
+            i.putExtra("email", email);
+            i.putExtra("name", name);
+            startActivity(i);
+      }
+    };
+
+    public void createIntent(){
+        handler = new Handler();
+        handler.postDelayed(task,1000);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -156,7 +165,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void accept(String response) throws Exception {
                         Toast.makeText(MainActivity.this, ""+response, Toast.LENGTH_SHORT).show();
-                        launchHome();
+                        if(!response.contains("Wrong"))
+                            createIntent();
                     }
                 }));
 

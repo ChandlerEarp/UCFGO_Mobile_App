@@ -14,6 +14,11 @@
         android:usesCleartextTraffic="true" >
         <activity android:name=".GarageA" >
         </activity>
+        <activity android:name=".GarageB"></activity>
+        <activity android:name=".GarageC"></activity>
+        <activity android:name=".GarageD"></activity>
+        <activity android:name=".CarFinder"></activity>
+
         <activity android:name=".AvailableSpots" />
         <activity
             android:name=".Home"
